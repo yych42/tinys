@@ -31,4 +31,9 @@ export const POST: RequestHandler = async ({ request }) => {
 	return json({ content: clean(textContent), title, length, lang });
 };
 
-const clean = (str: string) => str.replace(/\s+/g, ' ').replace(/\n+/g, '\n\n');
+const clean = (str: string) => {
+	const multipleNewLinesToDouble = str.replace(/(\n\s*){2,}/g, '\n\n');
+	const singleNewLinesToDouble = multipleNewLinesToDouble.replace(/(?<!\n)\n(?!\n)/g, '\n\n');
+	const singleWhiteSpace = singleNewLinesToDouble.replace(/[ ]+/g, ' ');
+	return singleWhiteSpace;
+};
