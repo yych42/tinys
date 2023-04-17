@@ -35,5 +35,6 @@ const clean = (str: string) => {
 	const multipleNewLinesToDouble = str.replace(/(\n\s*){2,}/g, '\n\n');
 	const singleNewLinesToDouble = multipleNewLinesToDouble.replace(/(?<!\n)\n(?!\n)/g, '\n\n');
 	const singleWhiteSpace = singleNewLinesToDouble.replace(/[ ]+/g, ' ');
-	return singleWhiteSpace;
+	const final = singleWhiteSpace.trim();
+	return final;
 };
