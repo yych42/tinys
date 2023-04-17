@@ -28,5 +28,7 @@ export const POST: RequestHandler = async ({ request }) => {
 
 	const { textContent, title, length, lang } = article;
 
-	return json({ content: textContent, title, length, lang });
+	return json({ content: clean(textContent), title, length, lang });
 };
+
+const clean = (str: string) => str.replace(/\s+/g, ' ').replace(/\n+/g, '\n\n');
